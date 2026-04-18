@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IOM – Digital Skills Training | Chamtala CRC</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --iom-blue: #0033A0;
+    --iom-light: #0057C8;
+    --iom-sky: #E8F0FE;
+    --iom-gold: #F5A623;
+    --iom-teal: #00A99D;
+    --white: #FFFFFF;
+    --off: #F4F7FF;
+    --text: #1A1F36;
+    --muted: #6B7499;
+    --card: rgba(255,255,255,0.95);
+    --shadow: 0 8px 40px rgba(0,51,160,0.13);
+    --radius: 18px;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--off);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ─── LOGIN PAGE ─── */
+  #loginPage {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .login-left {
+    flex: 1.1;
+    background: linear-gradient(145deg, #001F6B 0%, var(--iom-blue) 45%, #0057C8 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .login-left::before {
+    content:'';
+    position:absolute; inset:0;
+    background: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'%3E%3Ccircle cx='300' cy='300' r='120'/%3E%3Ccircle cx='300' cy='300' r='200'/%3E%3Ccircle cx='300' cy='300' r='280'/%3E%3Ccircle cx='300' cy='300' r='360'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat;
+  }
+
+  .login-left::after {
+    content:'';
+    position:absolute;
+    width:380px; height:380px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(0,169,157,0.22) 0%, transparent 70%);
+    bottom:-80px; right:-80px;
+  }
+
+  .iom-logo-wrap {
+    position: relative;
+    z-index:2;
+    margin-bottom: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  /* IOM Logo SVG-style badge */
+  .iom-emblem {
+    width: 120px; height: 120px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 8px rgba(255,255,255,0.15), 0 20px 60px rgba(0,0,0,0.3);
+    animation: floatBadge 4s ease-in-out infinite;
+  }
+
+  @keyframes floatBadge {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .iom-emblem svg { width:80px; height:80px; }
+
+  .left-headline {
+    position:relative; z-index:2;
+    text-align: center;
+    color: var(--white);
+  }
+
+  .left-headline h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+
+  .left-headline h1 span { color: var(--iom-gold); }
+
+  .left-headline p {
+    font-size: 1.05rem;
+    opacity: 0.82;
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0 auto 28px;
+  }
+
+  .left-team {
+    position:relative; z-index:2;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    padding: 20px 28px;
+    color: var(--white);
+    width: 100%;
+    max-width: 340px;
+    backdrop-filter: blur(8px);
+  }
+
+  .left-team h3 { font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; opacity:.6; margin-bottom:14px; }
+
+  .team-row {
+    display:flex; align-items:center; gap:12px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .team-row:last-child { border-bottom:none; }
+
+  .team-avatar {
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:.8rem;
+    flex-shrink:0;
+  }
+
+  .team-info { line-height:1.3; }
+  .team-info strong { font-size:.88rem; display:block; }
+  .team-info span { font-size:.75rem; opacity:.65; }
+
+  /* RIGHT / FORM */
+  .login-right {
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 60px 50px;
+    background: var(--off);
+  }
+
+  .login-card {
+    width: 100%; max-width: 420px;
+  }
+
+  .login-card h2 {
+    font-family:'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight:700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .login-card > p {
+    color: var(--muted);
+    font-size:.95rem;
+    margin-bottom:32px;
+  }
+
+  .form-group { margin-bottom: 20px; }
+
+  .form-group label {
+    display:block;
+    font-weight:700;
+    font-size:.85rem;
+    color: var(--text);
+    margin-bottom: 7px;
+    letter-spacing:.02em;
+  }
+
+  .form-group input, .form-group select {
+    width:100%;
+    padding: 14px 18px;
+    border: 2px solid #D8DEF0;
+    border-radius: 12px;
+    font-family:'Nunito', sans-serif;
+    font-size:.97rem;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color .2s, box-shadow .2s;
+    outline:none;
+  }
+
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--iom-blue);
+    box-shadow: 0 0 0 4px rgba(0,51,160,0.1);
+  }
+
+  .form-group input::placeholder { color:#B0B7D1; }
+
+  .input-icon-wrap { position:relative; }
+  .input-icon-wrap input { padding-left:46px; }
+  .input-icon-wrap .icon {
+    position:absolute; left:15px; top:50%;
+    transform:translateY(-50%);
+    color: var(--muted);
+    font-size:1.1rem;
+  }
+
+  .role-pills {
+    display:flex; gap:10px;
+  }
+
+  .role-pill {
+    flex:1; padding:11px 6px;
+    border: 2px solid #D8DEF0;
+    border-radius:11px;
+    text-align:center;
+    cursor:pointer;
+    font-family:'Nunito', sans-serif;
+    font-weight:700;
+    font-size:.83rem;
+    color: var(--muted);
+    background: var(--white);
+    transition: all .2s;
+  }
+
+  .role-pill.active {
+    border-color: var(--iom-blue);
+    background: var(--iom-sky);
+    color: var(--iom-blue);
+  }
+
+  .role-pill span { display:block; font-size:1.2rem; margin-bottom:3px; }
+
+  .btn-login {
+    width:100%; padding:15px;
+    background: linear-gradient(135deg, var(--iom-blue), var(--iom-light));
+    color: var(--white);
+    border:none; border-radius:12px;
+    font-family:'Nunito', sans-serif;
+    font-size:1.05rem;
+    font-weight:800;
+    cursor:pointer;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 6px 24px rgba(0,51,160,0.3);
+    margin-top:6px;
+    letter-spacing:.03em;
+  }
+
+  .btn-login:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(0,51,160,0.38); }
+  .btn-login:active { transform:translateY(0); }
+
+  .login-footer {
+    text-align:center;
+    margin-top:24px;
+    font-size:.82rem;
+    color: var(--muted);
+  }
+
+  /* ─── MAIN APP ─── */
+  #mainApp { display:none; }
+
+  .app-layout {
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width:270px;
+    background: linear-gradient(180deg, #001F6B 0%, var(--iom-blue) 100%);
+    display:flex;
+    flex-direction:column;
+    position:fixed;
+    top:0; bottom:0; left:0;
+    z-index:100;
+    overflow-y:auto;
+  }
+
+  .sidebar-logo {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display:flex; align-items:center; gap:14px;
+  }
+
+  .sidebar-logo .mini-emblem {
+    width:46px; height:46px;
+    background: var(--white);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+
+  .sidebar-logo .mini-emblem svg { width:30px; height:30px; }
+
+  .sidebar-logo-text strong {
+    display:block;
+    color:var(--white);
+    font-size:.95rem;
+    font-weight:800;
+    line-height:1.2;
+  }
+
+  .sidebar-logo-text span {
+    color:rgba(255,255,255,.55);
+    font-size:.72rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+
+  .sidebar-user {
+    margin: 20px 16px;
+    background: rgba(255,255,255,0.1);
+    border-radius:12px;
+    padding:14px 16px;
+    display:flex; align-items:center; gap:12px;
+  }
+
+  .user-ava {
+    width:40px; height:40px; border-radius:50%;
+    background: var(--iom-gold);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:900; font-size:.9rem; color:#fff;
+    flex-shrink:0;
+  }
+
+  .sidebar-user-info strong { color:var(--white); font-size:.88rem; display:block; }
+  .sidebar-user-info span { color:rgba(255,255,255,.55); font-size:.74rem; }
+
+  .nav-section {
+    padding: 8px 16px 4px;
+    font-size:.68rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.35);
+    font-weight:700;
+    margin-top:8px;
+  }
+
+  .nav-item {
+    display:flex; align-items:center; gap:13px;
+    padding:11px 20px;
+    margin:2px 10px;
+    border-radius:11px;
+    cursor:pointer;
+    color:rgba(255,255,255,.7);
+    font-weight:600;
+    font-size:.91rem;
+    transition:all .18s;
+    text-decoration:none;
+  }
+
+  .nav-item:hover { background:rgba(255,255,255,.1); color:var(--white); }
+
+  .nav-item.active {
+    background:rgba(255,255,255,.18);
+    color:var(--white);
+    box-shadow:inset 3px 0 0 var(--iom-gold);
+  }
+
+  .nav-item .nav-icon { font-size:1.15rem; width:22px; text-align:center; }
+
+  .nav-badge {
+    margin-left:auto;
+    background:var(--iom-gold);
+    color:#fff;
+    font-size:.66rem;
+    font-weight:800;
+    padding:2px 8px;
+    border-radius:20px;
+  }
+
+  .sidebar-bottom {
+    margin-top:auto;
+    padding:16px;
+    border-top:1px solid rgba(255,255,255,.1);
+  }
+
+  .btn-logout {
+    width:100%; padding:11px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:10px;
+    color:rgba(255,255,255,.7);
+    font-family:'Nunito', sans-serif;
+    font-weight:700;
+    font-size:.88rem;
+    cursor:pointer;
+    transition:all .18s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+
+  .btn-logout:hover { background:rgba(255,50,50,.25); color:#fff; border-color:rgba(255,80,80,.3); }
+
+  /* MAIN CONTENT */
+  .main-content {
+    margin-left:270px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    background:var(--white);
+    padding:16px 36px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 2px 16px rgba(0,51,160,0.07);
+    position:sticky; top:0; z-index:90;
+  }
+
+  .topbar-title {
+    font-family:'Playfair Display', serif;
+    font-size:1.35rem;
+    font-weight:700;
+    color:var(--text);
+  }
+
+  .topbar-right { display:flex; align-items:center; gap:16px; }
+
+  .topbar-btn {
+    width:40px; height:40px;
+    border-radius:10px;
+    background:var(--off);
+    border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem;
+    position:relative;
+    transition:background .15s;
+  }
+
+  .topbar-btn:hover { background:var(--iom-sky); }
+
+  .notif-dot {
+    position:absolute; top:8px; right:8px;
+    width:8px; height:8px; border-radius:50%;
+    background:var(--iom-gold);
+    border:2px solid var(--white);
+  }
+
+  .topbar-ava {
+    width:40px; height:40px; border-radius:50%;
+    background:linear-gradient(135deg,var(--iom-blue),var(--iom-teal));
+    color:var(--white); font-weight:800; font-size:.88rem;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    box-shadow:0 3px 12px rgba(0,51,160,0.25);
+  }
+
+  /* PAGE SECTIONS */
+  .page-section { display:none; }
+  .page-section.active { display:block; }
+
+  .content-area { padding:32px 36px; }
+
+  /* DASHBOARD */
+  .welcome-banner {
+    background:linear-gradient(135deg, var(--iom-blue) 0%, var(--iom-light) 60%, var(--iom-teal) 100%);
+    border-radius:var(--radius);
+    padding:32px 36px;
+    color:var(--white);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:28px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .welcome-banner::before {
+    content:'';
+    position:absolute;
+    width:300px; height:300px; border-radius:50%;
+    background:rgba(255,255,255,0.06);
+    right:-60px; top:-80px;
+  }
+
+  .welcome-banner::after {
+    content:'';
+    position:absolute;
+    width:180px; height:180px; border-radius:50%;
+    background:rgba(255,255,255,0.06);
+    right:80px; bottom:-60px;
+  }
+
+  .welcome-text { position:relative; z-index:1; }
+  .welcome-text h2 { font-family:'Playfair Display', serif; font-size:1.8rem; margin-bottom:6px; }
+  .welcome-text p { opacity:.82; font-size:.95rem; }
+
+  .welcome-graphic {
+    position:relative; z-index:1;
+    font-size:5rem;
+    opacity:.7;
+  }
+
+  .stats-grid {
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:18px;
+    margin-bottom:28px;
+  }
+
+  .stat-card {
+    background:var(--white);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    box-shadow:var(--shadow);
+    display:flex; align-items:center; gap:16px;
+    transition:transform .2s;
+  }
+
+  .stat-card:hover { transform:translateY(-3px); }
+
+  .stat-icon {
+    width:52px; height:52px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem;
+    flex-shrink:0;
+  }
+
+  .stat-info strong { font-size:1.6rem; font-weight:900; display:block; color:var(--text); }
+  .stat-info span { font-size:.8rem; color:var(--muted); font-weight:600; }
+
+  .grid-2 {
+    display:grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap:24px;
+    margin-bottom:28px;
+  }
+
+  .card {
+    background:var(--white);
+    border-radius:var(--radius);
+    padding:24px;
+    box-shadow:var(--shadow);
+  }
+
+  .card-header {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:18px;
+  }
+
+  .card-header h3 { font-size:1.05rem; font-weight:800; color:var(--text); }
+
+  .btn-sm {
+    padding:6px 14px;
+    border-radius:8px;
+    background:var(--iom-sky);
+    color:var(--iom-blue);
+    font-family:'Nunito', sans-serif;
+    font-weight:700;
+    font-size:.8rem;
+    border:none; cursor:pointer;
+    transition:background .15s;
+  }
+
+  .btn-sm:hover { background:#d0dcf9; }
+
+  .announcement-item {
+    display:flex; gap:14px;
+    padding:12px 0;
+    border-bottom:1px solid #EEF0F8;
+  }
+
+  .announcement-item:last-child { border-bottom:none; padding-bottom:0; }
+
+  .ann-dot {
+    width:10px; height:10px; border-radius:50%;
+    flex-shrink:0; margin-top:5px;
+  }
+
+  .ann-content strong { font-size:.9rem; display:block; color:var(--text); margin-bottom:2px; }
+  .ann-content p { font-size:.82rem; color:var(--muted); line-height:1.5; }
+  .ann-time { font-size:.74rem; color:var(--muted); margin-top:4px; display:block; }
+
+  .team-card-list { display:flex; flex-direction:column; gap:12px; }
+
+  .team-member {
+    display:flex; align-items:center; gap:12px;
+    padding:10px 14px;
+    border-radius:12px;
+    background:var(--off);
+    transition:background .15s;
+  }
+
+  .team-member:hover { background:var(--iom-sky); }
+
+  .tm-ava {
+    width:42px; height:42px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:.85rem; color:#fff;
+    flex-shrink:0;
+  }
+
+  .tm-info strong { font-size:.88rem; color:var(--text); display:block; }
+  .tm-info span { font-size:.76rem; color:var(--muted); }
+
+  .tm-badge {
+    margin-left:auto;
+    font-size:.68rem; font-weight:700;
+    padding:3px 9px; border-radius:20px;
+    background:var(--iom-sky); color:var(--iom-blue);
+  }
+
+  /* LECTURES */
+  .section-toolbar {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:24px;
+  }
+
+  .section-toolbar h2 { font-family:'Playfair Display', serif; font-size:1.5rem; }
+
+  .btn-primary {
+    padding:11px 22px;
+    background:linear-gradient(135deg,var(--iom-blue),var(--iom-light));
+    color:var(--white);
+    border:none; border-radius:10px;
+    font-family:'Nunito', sans-serif;
+    font-weight:800; font-size:.88rem;
+    cursor:pointer;
+    box-shadow:0 4px 16px rgba(0,51,160,0.25);
+    transition:all .18s;
+    display:flex; align-items:center; gap:7px;
+  }
+
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,51,160,0.32); }
+
+  .lectures-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+
+  .lecture-card {
+    background:var(--white);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:transform .2s, box-shadow .2s;
+  }
+
+  .lecture-card:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,51,160,0.16); }
+
+  .lc-header {
+    padding:28px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    position:relative;
+  }
+
+  .lc-icon { font-size:2.2rem; }
+
+  .lc-date {
+    font-size:.74rem;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.25);
+    color:#fff;
+  }
+
+  .lc-body { padding:16px 24px 20px; }
+  .lc-body h4 { font-size:1rem; font-weight:800; color:var(--text); margin-bottom:5px; }
+  .lc-body p { font-size:.83rem; color:var(--muted); line-height:1.55; margin-bottom:14px; }
+
+  .lc-footer {
+    display:flex; align-items:center; justify-content:space-between;
+  }
+
+  .lc-type {
+    font-size:.74rem; font-weight:700;
+    padding:4px 10px; border-radius:20px;
+  }
+
+  .btn-view {
+    padding:7px 16px;
+    background:var(--iom-sky);
+    color:var(--iom-blue);
+    border:none; border-radius:8px;
+    font-family:'Nunito', sans-serif;
+    font-weight:700; font-size:.8rem;
+    cursor:pointer; transition:background .15s;
+  }
+
+  .btn-view:hover { background:#d0dcf9; }
+
+  /* HOMEWORK */
+  .hw-list { display:flex; flex-direction:column; gap:16px; }
+
+  .hw-item {
+    background:var(--white);
+    border-radius:var(--radius);
+    padding:22px 28px;
+    box-shadow:var(--shadow);
+    display:flex; align-items:center; gap:20px;
+    transition:transform .2s;
+  }
+
+  .hw-item:hover { transform:translateX(4px); }
+
+  .hw-num {
+    width:50px; height:50px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:900; font-size:1.1rem; color:#fff;
+    flex-shrink:0;
+  }
+
+  .hw-info { flex:1; }
+  .hw-info h4 { font-size:1rem; font-weight:800; color:var(--text); margin-bottom:4px; }
+  .hw-info p { font-size:.83rem; color:var(--muted); }
+
+  .hw-meta { text-align:right; }
+  .hw-due { font-size:.8rem; font-weight:700; color:var(--iom-blue); display:block; margin-bottom:8px; }
+
+  .status-badge {
+    font-size:.72rem; font-weight:700;
+    padding:4px 11px; border-radius:20px;
+  }
+
+  /* ANNOUNCEMENTS PAGE */
+  .ann-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+
+  .ann-card {
+    background:var(--white);
+    border-radius:var(--radius);
+    padding:26px;
+    box-shadow:var(--shadow);
+    border-left:5px solid;
+    transition:transform .2s;
+  }
+
+  .ann-card:hover { transform:translateY(-3px); }
+
+  .ann-card-badge {
+    display:inline-block;
+    font-size:.73rem; font-weight:700;
+    padding:4px 11px; border-radius:20px;
+    margin-bottom:12px;
+  }
+
+  .ann-card h4 { font-size:1.05rem; font-weight:800; color:var(--text); margin-bottom:6px; }
+  .ann-card p { font-size:.85rem; color:var(--muted); line-height:1.6; }
+  .ann-card .ann-ts { font-size:.76rem; color:var(--muted); margin-top:14px; display:block; }
+
+  /* MODAL OVERLAY */
+  .modal-overlay {
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(10,20,60,0.55);
+    backdrop-filter:blur(4px);
+    z-index:1000;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .modal-overlay.open { display:flex; }
+
+  .modal {
+    background:var(--white);
+    border-radius:20px;
+    padding:36px;
+    width:100%; max-width:500px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.25);
+    animation:slideUp .3s ease;
+  }
+
+  @keyframes slideUp {
+    from { opacity:0; transform:translateY(20px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  .modal h3 { font-family:'Playfair Display', serif; font-size:1.4rem; margin-bottom:20px; }
+
+  .modal-actions { display:flex; gap:12px; justify-content:flex-end; margin-top:24px; }
+
+  .btn-cancel {
+    padding:10px 20px;
+    background:var(--off);
+    border:none; border-radius:10px;
+    font-family:'Nunito', sans-serif;
+    font-weight:700; font-size:.9rem;
+    cursor:pointer; color:var(--muted);
+    transition:background .15s;
+  }
+
+  .btn-cancel:hover { background:#e0e5f5; }
+
+  textarea {
+    width:100%; padding:13px 16px;
+    border:2px solid #D8DEF0;
+    border-radius:12px;
+    font-family:'Nunito', sans-serif;
+    font-size:.93rem;
+    resize:vertical; min-height:100px;
+    outline:none; color:var(--text);
+  }
+
+  textarea:focus { border-color:var(--iom-blue); box-shadow:0 0 0 4px rgba(0,51,160,.1); }
+
+  .file-upload {
+    border:2px dashed #C8D0E8;
+    border-radius:12px;
+    padding:24px;
+    text-align:center;
+    cursor:pointer;
+    transition:border-color .2s, background .2s;
+    margin-top:4px;
+  }
+
+  .file-upload:hover { border-color:var(--iom-blue); background:var(--iom-sky); }
+  .file-upload p { font-size:.85rem; color:var(--muted); margin-top:8px; }
+
+  /* RESPONSIVE */
+  @media(max-width:1024px) {
+    .stats-grid { grid-template-columns:1fr 1fr; }
+    .lectures-grid { grid-template-columns:1fr 1fr; }
+  }
+
+  @media(max-width:768px) {
+    #loginPage { flex-direction:column; }
+    .login-left { padding:40px 30px; }
+    .login-right { padding:40px 24px; }
+    .sidebar { transform:translateX(-100%); }
+    .main-content { margin-left:0; }
+    .stats-grid { grid-template-columns:1fr 1fr; }
+    .grid-2, .ann-grid { grid-template-columns:1fr; }
+    .lectures-grid { grid-template-columns:1fr; }
+  }
+
+  /* Smooth transitions */
+  .fade-in { animation:fadeIn .4s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LOGIN PAGE ═══════════════ -->
+<div id="loginPage">
+
+  <div class="login-left">
+    <div class="iom-logo-wrap">
+      <div class="iom-emblem">
+        <!-- IOM Logo SVG -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="48" fill="#0033A0"/>
+          <circle cx="50" cy="50" r="44" fill="none" stroke="white" stroke-width="1.5"/>
+          <!-- Globe lines -->
+          <ellipse cx="50" cy="50" rx="28" ry="42" fill="none" stroke="white" stroke-width="1.5"/>
+          <ellipse cx="50" cy="50" rx="42" ry="28" fill="none" stroke="white" stroke-width="1.5"/>
+          <line x1="8" y1="50" x2="92" y2="50" stroke="white" stroke-width="1.5"/>
+          <line x1="50" y1="8" x2="50" y2="92" stroke="white" stroke-width="1.5"/>
+          <circle cx="50" cy="50" r="28" fill="none" stroke="white" stroke-width="1.5"/>
+          <!-- IOM text -->
+          <text x="50" y="56" text-anchor="middle" fill="white" font-size="14" font-weight="900" font-family="Arial,sans-serif">IOM</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="left-headline">
+      <h1>Digital Skills<br><span>Training Program</span></h1>
+      <p>Empowering communities through technology education at Chamtala CRC</p>
+    </div>
+
+    <div class="left-team">
+      <h3>Program Team</h3>
+      <div class="team-row">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#F5A623,#e8920f)">ZD</div>
+        <div class="team-info">
+          <strong>Zekrullah Durrani</strong>
+          <span>Trainer</span>
+        </div>
+      </div>
+      <div class="team-row">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#00A99D,#007f76)">UK</div>
+        <div class="team-info">
+          <strong>Ummara Khan Khushal</strong>
+          <span>Program Associate</span>
+        </div>
+      </div>
+      <div class="team-row">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#6C63FF,#4c44d6)">AH</div>
+        <div class="team-info">
+          <strong>Abdul Haseeb Wardak</strong>
+          <span>Program Assistant</span>
+        </div>
+      </div>
+      <div class="team-row">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#E53935,#b71c1c)">ZH</div>
+        <div class="team-info">
+          <strong>Zekria Hemat</strong>
+          <span>Program Assistant</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-right">
+    <div class="login-card fade-in">
+      <h2>Welcome Back 👋</h2>
+      <p>Sign in to access your learning portal</p>
+
+      <div style="margin-bottom:20px;">
+        <div style="font-weight:700;font-size:.85rem;margin-bottom:10px;">Login As</div>
+        <div class="role-pills">
+          <button class="role-pill active" onclick="selectRole(this,'trainer')">
+            <span>🎓</span> Trainer
+          </button>
+          <button class="role-pill" onclick="selectRole(this,'student')">
+            <span>📚</span> Student
+          </button>
+          <button class="role-pill" onclick="selectRole(this,'supervisor')">
+            <span>👔</span> Supervisor
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Full Name / ID</label>
+        <div class="input-icon-wrap">
+          <span class="icon">👤</span>
+          <input type="text" placeholder="Enter your name or student ID" id="loginName">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-icon-wrap">
+          <span class="icon">🔒</span>
+          <input type="password" placeholder="Enter your password" id="loginPass">
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;">
+        <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);cursor:pointer;">
+          <input type="checkbox" style="width:auto;accent-color:var(--iom-blue)"> Remember me
+        </label>
+        <a href="#" style="font-size:.83rem;color:var(--iom-blue);font-weight:700;text-decoration:none;">Forgot password?</a>
+      </div>
+
+      <button class="btn-login" onclick="doLogin()">Sign In to Portal →</button>
+
+      <div class="login-footer">
+        <strong style="color:var(--text);">IOM</strong> · Chamtala CRC · Digital Skills Training<br>
+        © 2025 International Organization for Migration
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MAIN APP ═══════════════ -->
+<div id="mainApp">
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="mini-emblem">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="48" fill="#0033A0"/>
+            <ellipse cx="50" cy="50" rx="28" ry="42" fill="none" stroke="white" stroke-width="2"/>
+            <ellipse cx="50" cy="50" rx="42" ry="28" fill="none" stroke="white" stroke-width="2"/>
+            <line x1="8" y1="50" x2="92" y2="50" stroke="white" stroke-width="2"/>
+            <line x1="50" y1="8" x2="50" y2="92" stroke="white" stroke-width="2"/>
+            <text x="50" y="56" text-anchor="middle" fill="white" font-size="16" font-weight="900" font-family="Arial,sans-serif">IOM</text>
+          </svg>
+        </div>
+        <div class="sidebar-logo-text">
+          <strong>Digital Skills</strong>
+          <span>Training Program</span>
+        </div>
+      </div>
+
+      <div class="sidebar-user">
+        <div class="user-ava" id="sidebarAva">ZD</div>
+        <div class="sidebar-user-info">
+          <strong id="sidebarName">Zekrullah Durrani</strong>
+          <span id="sidebarRole">Trainer</span>
+        </div>
+      </div>
+
+      <div class="nav-section">Main Menu</div>
+      <a class="nav-item active" onclick="showPage('dashboard',this)">
+        <span class="nav-icon">🏠</span> Dashboard
+      </a>
+      <a class="nav-item" onclick="showPage('lectures',this)">
+        <span class="nav-icon">📖</span> Lectures
+        <span class="nav-badge" id="lectureBadge">5</span>
+      </a>
+      <a class="nav-item" onclick="showPage('homework',this)">
+        <span class="nav-icon">📝</span> Homework
+        <span class="nav-badge" id="hwBadge">3</span>
+      </a>
+      <a class="nav-item" onclick="showPage('announcements',this)">
+        <span class="nav-icon">📢</span> Announcements
+        <span class="nav-badge" id="annBadge">2</span>
+      </a>
+
+      <div class="nav-section">Resources</div>
+      <a class="nav-item" onclick="showPage('quizzes',this)">
+        <span class="nav-icon">🧩</span> Quizzes & Tasks
+      </a>
+      <a class="nav-item" onclick="showPage('team',this)">
+        <span class="nav-icon">👥</span> Our Team
+      </a>
+
+      <div class="sidebar-bottom">
+        <button class="btn-logout" onclick="doLogout()">
+          🚪 Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <div class="topbar">
+        <div class="topbar-title" id="topbarTitle">Dashboard</div>
+        <div class="topbar-right">
+          <button class="topbar-btn" onclick="openModal('announceModal')" title="Add Announcement" id="addAnnBtn">
+            ➕
+          </button>
+          <button class="topbar-btn" title="Notifications">
+            🔔 <div class="notif-dot"></div>
+          </button>
+          <div class="topbar-ava" id="topAva">ZD</div>
+        </div>
+      </div>
+
+      <div class="content-area">
+
+        <!-- ── DASHBOARD ── -->
+        <div id="dashboard" class="page-section active fade-in">
+
+          <div class="welcome-banner">
+            <div class="welcome-text">
+              <h2>Good Morning! 🌟</h2>
+              <p id="welcomeMsg">Welcome back, Zekrullah. Here's today's overview.</p>
+            </div>
+            <div class="welcome-graphic">💻</div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#EEF2FF;">📚</div>
+              <div class="stat-info">
+                <strong id="statLectures">5</strong>
+                <span>Lectures Uploaded</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#FFF7E6;">📝</div>
+              <div class="stat-info">
+                <strong id="statHW">3</strong>
+                <span>Homework Assigned</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#E6FFF8;">🧩</div>
+              <div class="stat-info">
+                <strong>2</strong>
+                <span>Active Quizzes</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon" style="background:#FFF0F0;">📢</div>
+              <div class="stat-info">
+                <strong id="statAnn">4</strong>
+                <span>Announcements</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-header">
+                <h3>📢 Recent Announcements</h3>
+                <button class="btn-sm" onclick="showPage('announcements',null)">View All</button>
+              </div>
+              <div id="dashAnnList">
+                <div class="announcement-item">
+                  <div class="ann-dot" style="background:#F5A623;"></div>
+                  <div class="ann-content">
+                    <strong>Quiz 2 Scheduled</strong>
+                    <p>Quiz on MS Word & Excel will be held this Thursday at 10am</p>
+                    <span class="ann-time">Today · 9:00 AM</span>
+                  </div>
+                </div>
+                <div class="announcement-item">
+                  <div class="ann-dot" style="background:#0033A0;"></div>
+                  <div class="ann-content">
+                    <strong>New Lecture Uploaded</strong>
+                    <p>Lecture 5: Internet Basics & Email Usage is now available</p>
+                    <span class="ann-time">Yesterday · 2:30 PM</span>
+                  </div>
+                </div>
+                <div class="announcement-item">
+                  <div class="ann-dot" style="background:#00A99D;"></div>
+                  <div class="ann-content">
+                    <strong>Homework 3 Due</strong>
+                    <p>Please submit your Excel spreadsheet task by Saturday</p>
+                    <span class="ann-time">2 days ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3>👥 Program Team</h3>
+              </div>
+              <div class="team-card-list">
+                <div class="team-member">
+                  <div class="tm-ava" style="background:linear-gradient(135deg,#F5A623,#e8920f)">ZD</div>
+                  <div class="tm-info">
+                    <strong>Zekrullah Durrani</strong>
+                    <span>Chamtala CRC</span>
+                  </div>
+                  <div class="tm-badge">Trainer</div>
+                </div>
+                <div class="team-member">
+                  <div class="tm-ava" style="background:linear-gradient(135deg,#00A99D,#007f76)">UK</div>
+                  <div class="tm-info">
+                    <strong>Ummara Khan Khushal</strong>
+                    <span>Chamtala CRC</span>
+                  </div>
+                  <div class="tm-badge">Prog. Associate</div>
+                </div>
+                <div class="team-member">
+                  <div class="tm-ava" style="background:linear-gradient(135deg,#6C63FF,#4c44d6)">AH</div>
+                  <div class="tm-info">
+                    <strong>Abdul Haseeb Wardak</strong>
+                    <span>Chamtala CRC</span>
+                  </div>
+                  <div class="tm-badge">Supervisor</div>
+                </div>
+                <div class="team-member">
+                  <div class="tm-ava" style="background:linear-gradient(135deg,#E53935,#b71c1c)">ZH</div>
+                  <div class="tm-info">
+                    <strong>Zekria Hemat</strong>
+                    <span>Chamtala CRC</span>
+                  </div>
+                  <div class="tm-badge">Supervisor</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── LECTURES ── -->
+        <div id="lectures" class="page-section fade-in">
+          <div class="section-toolbar">
+            <h2>📖 Lectures</h2>
+            <button class="btn-primary" id="uploadLecBtn" onclick="openModal('uploadModal')">
+              ⬆️ Upload Lecture
+            </button>
+          </div>
+          <div class="lectures-grid" id="lecturesGrid">
+
+            <div class="lecture-card">
+              <div class="lc-header" style="background:linear-gradient(135deg,#0033A0,#0057C8)">
+                <span class="lc-icon">💻</span>
+                <span class="lc-date">Apr 1, 2025</span>
+              </div>
+              <div class="lc-body">
+                <h4>Lecture 1: Introduction to Computers</h4>
+                <p>Hardware, software basics, operating systems overview and computer components.</p>
+                <div class="lc-footer">
+                  <span class="lc-type" style="background:#EEF2FF;color:#0033A0">📄 PDF</span>
+                  <button class="btn-view">View →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="lecture-card">
+              <div class="lc-header" style="background:linear-gradient(135deg,#00A99D,#007f76)">
+                <span class="lc-icon">⌨️</span>
+                <span class="lc-date">Apr 5, 2025</span>
+              </div>
+              <div class="lc-body">
+                <h4>Lecture 2: Microsoft Word Essentials</h4>
+                <p>Creating, formatting and editing documents, inserting tables and images.</p>
+                <div class="lc-footer">
+                  <span class="lc-type" style="background:#E6FFF8;color:#00A99D">📊 PPTX</span>
+                  <button class="btn-view">View →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="lecture-card">
+              <div class="lc-header" style="background:linear-gradient(135deg,#F5A623,#d48e10)">
+                <span class="lc-icon">📊</span>
+                <span class="lc-date">Apr 9, 2025</span>
+              </div>
+              <div class="lc-body">
+                <h4>Lecture 3: Microsoft Excel Basics</h4>
+                <p>Spreadsheets, formulas, SUM/AVERAGE functions and basic data analysis.</p>
+                <div class="lc-footer">
+                  <span class="lc-type" style="background:#FFF7E6;color:#F5A623">📄 PDF</span>
+                  <button class="btn-view">View →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="lecture-card">
+              <div class="lc-header" style="background:linear-gradient(135deg,#6C63FF,#4c44d6)">
+                <span class="lc-icon">📧</span>
+                <span class="lc-date">Apr 13, 2025</span>
+              </div>
+              <div class="lc-body">
+                <h4>Lecture 4: Email & Communication</h4>
+                <p>Setting up email accounts, professional communication and attachments.</p>
+                <div class="lc-footer">
+                  <span class="lc-type" style="background:#F0F0FF;color:#6C63FF">📊 PPTX</span>
+                  <button class="btn-view">View →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="lecture-card">
+              <div class="lc-header" style="background:linear-gradient(135deg,#E53935,#b71c1c)">
+                <span class="lc-icon">🌐</span>
+                <span class="lc-date">Apr 17, 2025</span>
+              </div>
+              <div class="lc-body">
+                <h4>Lecture 5: Internet Basics & Browsing</h4>
+                <p>Web browsers, search engines, online safety and internet best practices.</p>
+                <div class="lc-footer">
+                  <span class="lc-type" style="background:#FFF0F0;color:#E53935">📄 PDF</span>
+                  <button class="btn-view">View →</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── HOMEWORK ── -->
+        <div id="homework" class="page-section fade-in">
+          <div class="section-toolbar">
+            <h2>📝 Homework</h2>
+            <button class="btn-primary" id="addHWBtn" onclick="openModal('hwModal')">
+              ➕ Add Homework
+            </button>
+          </div>
+          <div class="hw-list" id="hwList">
+
+            <div class="hw-item">
+              <div class="hw-num" style="background:linear-gradient(135deg,#0033A0,#0057C8)">01</div>
+              <div class="hw-info">
+                <h4>Create a formatted Word document</h4>
+                <p>Write a one-page letter using MS Word with proper headings, font formatting, and page borders</p>
+              </div>
+              <div class="hw-meta">
+                <span class="hw-due">📅 Due: Apr 8, 2025</span>
+                <span class="status-badge" style="background:#E6FFF8;color:#00A99D">✅ Submitted</span>
+              </div>
+            </div>
+
+            <div class="hw-item">
+              <div class="hw-num" style="background:linear-gradient(135deg,#F5A623,#d48e10)">02</div>
+              <div class="hw-info">
+                <h4>Excel Budget Spreadsheet</h4>
+                <p>Create a monthly household budget spreadsheet using SUM, AVERAGE, and MIN/MAX formulas</p>
+              </div>
+              <div class="hw-meta">
+                <span class="hw-due">📅 Due: Apr 14, 2025</span>
+                <span class="status-badge" style="background:#FFF7E6;color:#F5A623">⏳ In Progress</span>
+              </div>
+            </div>
+
+            <div class="hw-item">
+              <div class="hw-num" style="background:linear-gradient(135deg,#6C63FF,#4c44d6)">03</div>
+              <div class="hw-info">
+                <h4>Email Composition Practice</h4>
+                <p>Write and send a professional email to your trainer with subject line, greeting, body and signature</p>
+              </div>
+              <div class="hw-meta">
+                <span class="hw-due">📅 Due: Apr 19, 2025</span>
+                <span class="status-badge" style="background:#FFF0F0;color:#E53935">⏰ Pending</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── ANNOUNCEMENTS ── -->
+        <div id="announcements" class="page-section fade-in">
+          <div class="section-toolbar">
+            <h2>📢 Announcements</h2>
+            <button class="btn-primary" id="postAnnBtn" onclick="openModal('announceModal')">
+              📣 Post Announcement
+            </button>
+          </div>
+          <div class="ann-grid" id="annGrid">
+
+            <div class="ann-card" style="border-color:#F5A623;">
+              <span class="ann-card-badge" style="background:#FFF7E6;color:#F5A623">🧩 Quiz</span>
+              <h4>Quiz 2 – MS Word & Excel</h4>
+              <p>The second quiz covering Microsoft Word formatting and Excel formulas will take place this Thursday at 10:00 AM. Please review Lectures 2 and 3 before attending.</p>
+              <span class="ann-ts">📅 Posted: April 18, 2025 · 9:00 AM</span>
+            </div>
+
+            <div class="ann-card" style="border-color:#0033A0;">
+              <span class="ann-card-badge" style="background:#EEF2FF;color:#0033A0">📖 Lecture</span>
+              <h4>Lecture 5 Now Available</h4>
+              <p>Internet Basics & Browsing lecture has been uploaded. Download the PDF from the Lectures section and prepare notes for the upcoming class discussion.</p>
+              <span class="ann-ts">📅 Posted: April 17, 2025 · 2:30 PM</span>
+            </div>
+
+            <div class="ann-card" style="border-color:#00A99D;">
+              <span class="ann-card-badge" style="background:#E6FFF8;color:#00A99D">📝 Homework</span>
+              <h4>Homework 3 Deadline Reminder</h4>
+              <p>Don't forget that Homework 3 (Email Composition) is due this Saturday. Submit directly to your trainer via email or bring a printed copy to class.</p>
+              <span class="ann-ts">📅 Posted: April 16, 2025 · 11:00 AM</span>
+            </div>
+
+            <div class="ann-card" style="border-color:#6C63FF;">
+              <span class="ann-card-badge" style="background:#F0F0FF;color:#6C63FF">📅 Class</span>
+              <h4>Class Schedule Change</h4>
+              <p>Next week's Monday class has been moved to Wednesday, April 23rd at the same time. The venue remains Chamtala CRC Training Room. Attendance is mandatory.</p>
+              <span class="ann-ts">📅 Posted: April 15, 2025 · 4:00 PM</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── QUIZZES ── -->
+        <div id="quizzes" class="page-section fade-in">
+          <div class="section-toolbar">
+            <h2>🧩 Quizzes & Tasks</h2>
+            <button class="btn-primary" id="addQuizBtn" onclick="openModal('quizModal')">
+              ➕ Add Quiz
+            </button>
+          </div>
+          <div class="lectures-grid">
+
+            <div class="lecture-card">
+              <div class="lc-header" style="background:linear-gradient(135deg,#F5A623,#d48e10)">
+                <span class="lc-icon">📋</span>
+                <span class="lc-date">Apr 10, 2025</span>
+              </div>
+              <div class="lc-body">
+                <h4>Quiz 1: Computer Fundamentals</h4>
+                <p>15 multiple-choice questions covering hardware, software and OS basics.</p>
+                <div class="lc-footer">
+                  <span class="lc-type" style="background:#E6FFF8;color:#00A99D">✅ Completed</span>
+                  <button class="btn-view">Results →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="lecture-card">
+              <div class="lc-header" style="background:linear-gradient(135deg,#0033A0,#0057C8)">
+                <span class="lc-icon">🧩</span>
+                <span class="lc-date">Apr 22, 2025</span>
+              </div>
+              <div class="lc-body">
+                <h4>Quiz 2: MS Word & Excel</h4>
+                <p>20 questions on document formatting and spreadsheet formulas.</p>
+                <div class="lc-footer">
+                  <span class="lc-type" style="background:#FFF7E6;color:#F5A623">⏳ Upcoming</span>
+                  <button class="btn-view">Prepare →</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="lecture-card">
+              <div class="lc-header" style="background:linear-gradient(135deg,#00A99D,#007f76)">
+                <span class="lc-icon">🌐</span>
+                <span class="lc-date">May 1, 2025</span>
+              </div>
+              <div class="lc-body">
+                <h4>Task: Internet Research Assignment</h4>
+                <p>Use a web browser to research a given topic and write a short summary.</p>
+                <div class="lc-footer">
+                  <span class="lc-type" style="background:#FFF0F0;color:#E53935">📌 Assigned</span>
+                  <button class="btn-view">View →</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── TEAM ── -->
+        <div id="team" class="page-section fade-in">
+          <div class="section-toolbar">
+            <h2>👥 Our Team</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
+
+            <div class="card" style="text-align:center;padding:36px 28px;">
+              <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#F5A623,#d48e10);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;color:#fff;margin:0 auto 18px;">ZD</div>
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:6px;">Zekrullah Durrani</h3>
+              <div style="display:inline-block;background:#EEF2FF;color:#0033A0;padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:12px;">Trainer</div>
+              <p style="font-size:.88rem;color:var(--muted);line-height:1.6;">Digital Skills Trainer at Chamtala CRC Community Resource Center. Responsible for delivering daily lectures and coursework for the IOM Digital Skills Training Program.</p>
+            </div>
+
+            <div class="card" style="text-align:center;padding:36px 28px;">
+              <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#00A99D,#007f76);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;color:#fff;margin:0 auto 18px;">UK</div>
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:6px;">Ummara Khan Khushal</h3>
+              <div style="display:inline-block;background:#E6FFF8;color:#00A99D;padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:12px;">Program Associate</div>
+              <p style="font-size:.88rem;color:var(--muted);line-height:1.6;">Program Associate overseeing operations and coordination for the IOM Digital Skills Training Program at Chamtala CRC.</p>
+            </div>
+
+            <div class="card" style="text-align:center;padding:36px 28px;">
+              <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#6C63FF,#4c44d6);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;color:#fff;margin:0 auto 18px;">AH</div>
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:6px;">Abdul Haseeb Wardak</h3>
+              <div style="display:inline-block;background:#F0F0FF;color:#6C63FF;padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:12px;">Program Assistant</div>
+              <p style="font-size:.88rem;color:var(--muted);line-height:1.6;">Program Assistant & Supervisor supporting training delivery and community outreach at Chamtala CRC Community Resource Center.</p>
+            </div>
+
+            <div class="card" style="text-align:center;padding:36px 28px;">
+              <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#E53935,#b71c1c);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;color:#fff;margin:0 auto 18px;">ZH</div>
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:6px;">Zekria Hemat</h3>
+              <div style="display:inline-block;background:#FFF0F0;color:#E53935;padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:12px;">Program Assistant</div>
+              <p style="font-size:.88rem;color:var(--muted);line-height:1.6;">Program Assistant & Supervisor supporting training activities and participant engagement at Chamtala CRC Community Resource Center.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /content-area -->
+    </main>
+  </div>
+</div>
+
+<!-- ═══════════════ MODALS ═══════════════ -->
+
+<!-- Upload Lecture -->
+<div class="modal-overlay" id="uploadModal">
+  <div class="modal">
+    <h3>⬆️ Upload New Lecture</h3>
+    <div class="form-group">
+      <label>Lecture Title</label>
+      <input type="text" placeholder="e.g. Lecture 6: PowerPoint Basics" id="lecTitle">
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea placeholder="Brief overview of lecture content..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Upload File</label>
+      <div class="file-upload" onclick="this.querySelector('input').click()">
+        📂 <strong>Click to choose file</strong>
+        <p>PDF, PPTX, DOCX supported</p>
+        <input type="file" style="display:none" accept=".pdf,.pptx,.docx">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal('uploadModal')">Cancel</button>
+      <button class="btn-primary" onclick="addLecture()">Upload Lecture</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Homework -->
+<div class="modal-overlay" id="hwModal">
+  <div class="modal">
+    <h3>📝 Add New Homework</h3>
+    <div class="form-group">
+      <label>Homework Title</label>
+      <input type="text" placeholder="e.g. PowerPoint Presentation Task" id="hwTitle">
+    </div>
+    <div class="form-group">
+      <label>Instructions</label>
+      <textarea placeholder="Detailed homework instructions..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Due Date</label>
+      <input type="date" id="hwDue">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal('hwModal')">Cancel</button>
+      <button class="btn-primary" onclick="addHomework()">Assign Homework</button>
+    </div>
+  </div>
+</div>
+
+<!-- Post Announcement -->
+<div class="modal-overlay" id="announceModal">
+  <div class="modal">
+    <h3>📣 Post Announcement</h3>
+    <div class="form-group">
+      <label>Category</label>
+      <select id="annCategory">
+        <option value="class">📅 Class Update</option>
+        <option value="quiz">🧩 Quiz / Task</option>
+        <option value="homework">📝 Homework</option>
+        <option value="lecture">📖 Lecture</option>
+        <option value="general">📢 General</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" placeholder="Announcement title..." id="annTitle">
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea placeholder="Write your announcement here..." id="annText"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal('announceModal')">Cancel</button>
+      <button class="btn-primary" onclick="postAnnouncement()">Post Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Quiz -->
+<div class="modal-overlay" id="quizModal">
+  <div class="modal">
+    <h3>🧩 Add Quiz / Task</h3>
+    <div class="form-group">
+      <label>Quiz Title</label>
+      <input type="text" placeholder="e.g. Quiz 3: Internet & Email" id="quizTitle">
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea placeholder="Topics covered, number of questions..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Date</label>
+      <input type="date">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal('quizModal')">Cancel</button>
+      <button class="btn-primary" onclick="closeModal('quizModal')">Save Quiz</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── State ──
+  let currentRole = 'trainer';
+  let lectureCount = 5;
+  let hwCount = 3;
+  let annCount = 4;
+
+  // ── Login ──
+  function selectRole(btn, role) {
+    document.querySelectorAll('.role-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    currentRole = role;
+  }
+
+  function doLogin() {
+    const name = document.getElementById('loginName').value.trim();
+    if (!name) {
+      document.getElementById('loginName').focus();
+      document.getElementById('loginName').style.borderColor = '#E53935';
+      setTimeout(() => document.getElementById('loginName').style.borderColor = '', 1200);
+      return;
+    }
+
+    const initials = name.split(' ').map(w => w[0]?.toUpperCase()).slice(0,2).join('') || 'U';
+    const roleLabels = { trainer:'Trainer', student:'Student', supervisor:'Supervisor' };
+
+    document.getElementById('sidebarName').textContent = name;
+    document.getElementById('sidebarRole').textContent = roleLabels[currentRole];
+    document.getElementById('sidebarAva').textContent = initials;
+    document.getElementById('topAva').textContent = initials;
+    document.getElementById('welcomeMsg').textContent = `Welcome back, ${name.split(' ')[0]}. Here's today's overview.`;
+
+    // Show/hide trainer-only buttons
+    const isTrainer = currentRole === 'trainer' || currentRole === 'supervisor';
+    ['uploadLecBtn','addHWBtn','addAnnBtn','postAnnBtn','addQuizBtn'].forEach(id => {
+      const el = document.getElementById(id);
+      if(el) el.style.display = isTrainer ? '' : 'none';
+    });
+
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('mainApp').style.display = 'block';
+  }
+
+  function doLogout() {
+    document.getElementById('mainApp').style.display = 'none';
+    document.getElementById('loginPage').style.display = 'flex';
+    document.getElementById('loginName').value = '';
+    document.getElementById('loginPass').value = '';
+  }
+
+  // ── Navigation ──
+  function showPage(id, navEl) {
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    if(navEl) navEl.classList.add('active');
+    const titles = { dashboard:'Dashboard', lectures:'Lectures', homework:'Homework',
+                     announcements:'Announcements', quizzes:'Quizzes & Tasks', team:'Our Team' };
+    document.getElementById('topbarTitle').textContent = titles[id] || id;
+  }
+
+  // ── Modals ──
+  function openModal(id) { document.getElementById(id).classList.add('open'); }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+  document.querySelectorAll('.modal-overlay').forEach(m => {
+    m.addEventListener('click', e => { if(e.target === m) m.classList.remove('open'); });
+  });
+
+  // ── Add Lecture ──
+  function addLecture() {
+    const title = document.getElementById('lecTitle').value.trim();
+    if(!title) return;
+    lectureCount++;
+    document.getElementById('statLectures').textContent = lectureCount;
+    document.getElementById('lectureBadge').textContent = lectureCount;
+
+    const colors = ['#0033A0,#0057C8','#00A99D,#007f76','#F5A623,#d48e10','#6C63FF,#4c44d6','#E53935,#b71c1c'];
+    const icons = ['💡','📱','🔧','📊','🎯'];
+    const col = colors[lectureCount % colors.length];
+    const icon = icons[lectureCount % icons.length];
+    const today = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+
+    const card = document.createElement('div');
+    card.className = 'lecture-card';
+    card.innerHTML = `
+      <div class="lc-header" style="background:linear-gradient(135deg,${col})">
+        <span class="lc-icon">${icon}</span>
+        <span class="lc-date">${today}</span>
+      </div>
+      <div class="lc-body">
+        <h4>${title}</h4>
+        <p>Newly uploaded lecture. Click view to access the material.</p>
+        <div class="lc-footer">
+          <span class="lc-type" style="background:#EEF2FF;color:#0033A0">📄 PDF</span>
+          <button class="btn-view">View →</button>
+        </div>
+      </div>`;
+    document.getElementById('lecturesGrid').appendChild(card);
+    closeModal('uploadModal');
+    document.getElementById('lecTitle').value = '';
+    showPage('lectures', null);
+  }
+
+  // ── Add Homework ──
+  function addHomework() {
+    const title = document.getElementById('hwTitle').value.trim();
+    const due = document.getElementById('hwDue').value;
+    if(!title) return;
+    hwCount++;
+    document.getElementById('statHW').textContent = hwCount;
+    document.getElementById('hwBadge').textContent = hwCount;
+
+    const num = String(hwCount).padStart(2,'0');
+    const dueStr = due ? new Date(due).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : 'TBD';
+    const gradients = ['#0033A0,#0057C8','#00A99D,#007f76','#6C63FF,#4c44d6','#F5A623,#d48e10'];
+    const g = gradients[hwCount % gradients.length];
+
+    const item = document.createElement('div');
+    item.className = 'hw-item';
+    item.innerHTML = `
+      <div class="hw-num" style="background:linear-gradient(135deg,${g})">${num}</div>
+      <div class="hw-info">
+        <h4>${title}</h4>
+        <p>Newly assigned homework task.</p>
+      </div>
+      <div class="hw-meta">
+        <span class="hw-due">📅 Due: ${dueStr}</span>
+        <span class="status-badge" style="background:#FFF0F0;color:#E53935">⏰ Pending</span>
+      </div>`;
+    document.getElementById('hwList').appendChild(item);
+    closeModal('hwModal');
+    document.getElementById('hwTitle').value = '';
+    showPage('homework', null);
+  }
+
+  // ── Post Announcement ──
+  function postAnnouncement() {
+    const title = document.getElementById('annTitle').value.trim();
+    const text = document.getElementById('annText').value.trim();
+    const cat = document.getElementById('annCategory').value;
+    if(!title || !text) return;
+
+    annCount++;
+    document.getElementById('statAnn').textContent = annCount;
+    document.getElementById('annBadge').textContent = annCount;
+
+    const styles = {
+      class:  { color:'#6C63FF', bg:'#F0F0FF', label:'📅 Class Update' },
+      quiz:   { color:'#F5A623', bg:'#FFF7E6', label:'🧩 Quiz' },
+      homework: { color:'#00A99D', bg:'#E6FFF8', label:'📝 Homework' },
+      lecture:  { color:'#0033A0', bg:'#EEF2FF', label:'📖 Lecture' },
+      general:  { color:'#E53935', bg:'#FFF0F0', label:'📢 General' }
+    };
+    const s = styles[cat];
+    const now = new Date().toLocaleString('en-GB',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+
+    // Add to announcements grid
+    const card = document.createElement('div');
+    card.className = 'ann-card';
+    card.style.borderColor = s.color;
+    card.innerHTML = `
+      <span class="ann-card-badge" style="background:${s.bg};color:${s.color}">${s.label}</span>
+      <h4>${title}</h4>
+      <p>${text}</p>
+      <span class="ann-ts">📅 Posted: ${now}</span>`;
+    document.getElementById('annGrid').prepend(card);
+
+    // Also update dash
+    const dot = document.createElement('div');
+    dot.className = 'announcement-item';
+    dot.innerHTML = `
+      <div class="ann-dot" style="background:${s.color}"></div>
+      <div class="ann-content">
+        <strong>${title}</strong>
+        <p>${text.substring(0,80)}${text.length>80?'…':''}</p>
+        <span class="ann-time">Just now</span>
+      </div>`;
+    document.getElementById('dashAnnList').prepend(dot);
+
+    closeModal('announceModal');
+    document.getElementById('annTitle').value = '';
+    document.getElementById('annText').value = '';
+    showPage('announcements', null);
+  }
+
+  // Enter key login
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Enter' && document.getElementById('loginPage').style.display !== 'none') doLogin();
+  });
+</script>
+</body>
+</html>
